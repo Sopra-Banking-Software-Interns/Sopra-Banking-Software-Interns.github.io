@@ -120,3 +120,4 @@ echo "Code copied to overwrite.html successfully!"
 
 cat overwrite.html > index.html
 rm overwrite.html
+rm contribution_final.json
