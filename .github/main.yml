@@ -1,0 +1,32 @@
+env:
+  token: ${{ secrets.TOKEN }}
+
+name: create-leaderboard
+on: push
+jobs:
+  run_tests:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure Git
+      run: |
+        git config --global user.email "priyanshrivastav08@gmail.com"
+        git config --global user.name "Riyu44"
+      shell: bash
+    - name: Run data_extraction file
+      run: |
+        chmod +x ./extract_data.sh
+        ./extract_data.sh
+      shell: bash
+    - name: Run update_index file
+      run: |
+        chmod +x ./html_creation.sh
+        ./html_creation.sh
+      shell: bash
+    - name: commit changes
+      run: |
+          git config --global user.email "priyanshrivastav08@gmail.com"
+          git config --global user.name "Riyu44"
+          git add .
+          git commit -m "Commit message from GitHub Actions"
+          git push
